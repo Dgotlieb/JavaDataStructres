@@ -2,13 +2,17 @@ import java.util.Scanner;
 
 public class EnumTest {
     public static void main(String[] args) {
-        System.out.println("Please choose server 1/2/3");
+        System.out.println("Please choose server ON/OFF");
         Scanner scanner = new Scanner(System.in);
-        int choice = scanner.nextInt();
-        switch (choice) {
-            case 1 -> System.out.println(Environments.DEVELOPMENT);
-            case 2 -> System.out.println(Environments.STAGING);
-            case 3 -> System.out.println(Environments.PRODUCTION);
+        String choice = scanner.next();
+        try {
+            Modes modes = Modes.valueOf(choice);
+            switch (modes) {
+                case ON -> System.out.println("Lights ON");
+                case OFF -> System.out.println("Lights OFF");
+            }
+        }catch (IllegalArgumentException e){
+            System.out.println("Invalid choice");
         }
     }
 }
